@@ -11,7 +11,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `Person` (
   `id` int(11) NOT NULL,
   `name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 INSERT INTO `Person` (`id`, `name`) VALUES

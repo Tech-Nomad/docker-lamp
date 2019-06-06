@@ -1,46 +1,33 @@
 <html>
- <head>
-  <title>Hello...</title>
+<head>
+    <meta charset="utf-8">
 
-  <meta charset="utf-8"> 
-
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </head>
 <body>
-    <div class="container">
-    <?php echo "<h1>Hi! I'm happy</h1>"; ?>
+<div class="container">
 
-    <?php
+	<?php
 
-    // Connexion et sélection de la base
-    $conn = mysqli_connect('db', 'user', 'test', "myDb");
+	/**
+	 * just for testing the connection
+	 **/
+	$conn = mysqli_connect('db', 'test', 'test', "test");
 
 
-    $query = 'SELECT * From Person';
-    $result = mysqli_query($conn, $query);
+	$query = 'SHOW TABLES';
+	$result = mysqli_query($conn, $query);
 
-    echo '<table class="table table-striped">';
-    echo '<thead><tr><th></th><th>id</th><th>name</th></tr></thead>';
-    while($value = $result->fetch_array(MYSQLI_ASSOC)){
-        echo '<tr>';
-        echo '<td><a href="#"><span class="glyphicon glyphicon-search"></span></a></td>';
-        foreach($value as $element){
-            echo '<td>' . $element . '</td>';
-        }
+	while($value = $result->fetch_array(MYSQLI_ASSOC)) {
+		foreach ( $value as $element ) {
+			?><p><?php echo $element ?></p><?php
+		}
+	}
+	$result->close();
 
-        echo '</tr>';
-    }
-    echo '</table>';
+	mysqli_close($conn);
 
-    /* Libération du jeu de résultats */
-    $result->close();
-
-    mysqli_close($conn);
-
-    ?>
-    </div>
+	?>
+</div>
 </body>
 </html>
